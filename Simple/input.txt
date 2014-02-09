@@ -1,0 +1,47 @@
+engine information
+
+enter engine type s
+sinusoidal drive engine configuration
+enter compression space clearence volume [m^3]: 10
+enter compression space swept volume [m^3]: 10
+enter expansion space clearence volume [m^3]: 10
+enter expansion space swept volume [m^3]: 10
+enter expansion phase angle advance [degrees]: 90
+
+cooler information
+enter cooler type p
+homogeneous bundle of smooth pipes
+enter pipe inside diameter [m] : 10
+enter heat exchanger length [m] : 10
+enter number of pipes in bundle : 20
+
+
+regenerator information
+enter regenerator configuration t
+tubular regenerator housing
+enter tube housing external diameter [m] : 10
+enter tube housing internal diameter [m] : 10
+enter regenerator length [m] : 10
+enter number of tubes : 10
+
+matrix information
+enter matrix type m
+ stacked wire mesh matrix
+enter matrix porosity : 10
+enter matrix wire diameter [m] : 20
+
+heater information
+enter heater type p
+homogeneous bundle of smooth pipes
+enter pipe inside diameter [m] : 10
+enter heat exchanger length [m] : 10
+enter number of pipes in bundle : 10
+
+
+gas information
+enter gas type: ai
+gas type is air
+enter mean pressure (Pa) : 10
+enter cold sink temperature (K) : 10
+enter hot source temperature (K) : 10
+enter operating frequency (herz) : 10
