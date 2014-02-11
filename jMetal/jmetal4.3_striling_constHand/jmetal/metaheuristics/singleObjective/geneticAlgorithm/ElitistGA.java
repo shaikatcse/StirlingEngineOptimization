@@ -1,6 +1,7 @@
 package jmetal.metaheuristics.singleObjective.geneticAlgorithm;
 
 import java.sql.Connection;
+
 import jmetal.metaheuristics.singleObjective.geneticAlgorithm.MysqlOperation;
 
 import java.sql.DriverManager;
@@ -16,6 +17,7 @@ import jmetal.core.Problem;
 import jmetal.core.Operator;
 import jmetal.core.Solution;
 import jmetal.core.SolutionSet;
+import jmetal.util.comparators.DominanceComparator;
 import jmetal.util.comparators.ObjectiveComparator;
 import jmetal.util.JMException;
 
@@ -65,7 +67,7 @@ public class ElitistGA /*extends TrackedAlgorithm*/ extends Algorithm{
                 Operator selectionOperator;
                 Comparator comparator;
 
-                comparator = new ObjectiveComparator(0); // Single objective comparator
+                comparator = new DominanceComparator(); // Single objective comparator
 
                 // Read the parameter
                 maxEvaluations = ((Integer) this.getInputParameter("maxEvaluations"))
@@ -199,7 +201,7 @@ public class ElitistGA /*extends TrackedAlgorithm*/ extends Algorithm{
         					genIndv = genIndv + var[j].getValue() + " ";
         				}
                         
-                        mysql.writeGenerationTable(genId, genNo, genTime,genIndv ,population.get(0).getObjective(0), runId, population.get(0).getEnginePOwer());
+                        mysql.writeGenerationTable(genId, genNo, genTime,genIndv ,-1*population.get(0).getObjective(0), runId, population.get(0).getEnginePOwer());
                         System.out.println(population.get(0).getObjective(0));
                         
                 }
