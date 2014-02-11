@@ -88,8 +88,8 @@ public class GA_main {
 		int populationSize = 100;
 		int maxEvaluations = 5000;
 		
-		int NumberOfRun = 1;
-		String alName = "test";
+		int NumberOfRun = 20;
+		String alName = "SeritEngine2";
 		mysql.writeAlgorithmTable(alName);
 		
 		for (int i = 0; i < NumberOfRun; i++) {
@@ -165,7 +165,7 @@ public class GA_main {
 				resultIndv = resultIndv + var[j].getValue() + " ";
 			}
 
-			mysql.updateRunTable(runId, resultIndv, population.get(0).getObjective(0),estimatedTime,population.get(0).getEnginePOwer() );
+			mysql.updateRunTable(runId, resultIndv, -1*population.get(0).getObjective(0),estimatedTime,population.get(0).getEnginePOwer() );
 						
 				
 			}

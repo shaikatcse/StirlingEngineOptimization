@@ -119,7 +119,7 @@ public class StrilingEngineHeatExchangerDesignProblemReal extends Problem {
 		
 		//value(21)
 		lowerLimit_[7] = 0.370;
-		upperLimit_[7] = 0.09;
+		upperLimit_[7] = 0.9;
 				
 		//value(22)
 		lowerLimit_[8] = 5.0;
@@ -128,7 +128,7 @@ public class StrilingEngineHeatExchangerDesignProblemReal extends Problem {
 		
 		// connection to matlab
 
-		proxy.eval("addpath('..\\..\\Simple test\\')");
+		proxy.eval("addpath('C:\\Users\\mahbub\\Documents\\GitHub\\StirlingEngineOptimization\\Simple test')");
 		// solutionType_ = new BinaryRealSolutionType(this);
 		if (solutionType.compareTo("Real") == 0) {
 			solutionType_ = new RealSolutionType(this);
@@ -178,7 +178,7 @@ public class StrilingEngineHeatExchangerDesignProblemReal extends Problem {
 			 * double qi = (-k * (thetaL - theta[solution.numberOfVariables() -
 			 * 1])) / Dx; error = error + Math.abs(qi - q0);
 			 */
-			String input = "in = {'s',0.090e-004,1.327e-004,0.090e-004,1.450e-004,90.0,'p',";
+			String input = "in = {'s',3.525E-05,2.350E-04,2.350E-05,2.350E-04,90,'p',";
 
 			// cooler
 			for (int i = 0; i < 2; i++) {
@@ -199,7 +199,7 @@ public class StrilingEngineHeatExchangerDesignProblemReal extends Problem {
 								.getValue() + ",";
 			}
 
-			input = input + "1,'m',0.700,4.000e-005,'p',";
+			input = input + "1,'m',0.7,5.000E-05,'p',";
 
 			// heater
 			for (int i = 6; i < solution.getDecisionVariables().length - 1; i++) {
@@ -212,7 +212,7 @@ public class StrilingEngineHeatExchangerDesignProblemReal extends Problem {
 							.getDecisionVariables().length - 1]).getValue()
 					+ ",";
 
-			input = input + "'ai',13500000.0,313.0,548.0,4.166}";
+			input = input + "'ai',3500000,330,873,25}";
 
 			proxy.eval(input + ";");
 			proxy.eval("sea");
@@ -234,8 +234,10 @@ public class StrilingEngineHeatExchangerDesignProblemReal extends Problem {
 		 * //exp(-1./(1-((P-P0)/DP).^2))/exp(-1) } else solution.setObjective(0,
 		 * 1/0.00001);
 		 */
-		// else
-		solution.setObjective(0, -eff);
+		if(Double.isNaN(eff))
+			solution.setObjective(0, Double.MAX_VALUE);
+		else
+			solution.setObjective(0, -eff);
 
 	} // evaluate
 
@@ -261,8 +263,8 @@ public class StrilingEngineHeatExchangerDesignProblemReal extends Problem {
 			constraint[0] = P0 + P0 * percentage - solution.getEnginePOwer();
 		else
 			constraint[0] = 0.0;
-
-		//heater
+		
+	//heater
 		// 2. Pi * (value(20)+0.001) * value(21)*value(22)> 0.58
 		
 		double value20 = ((Real) solution.getDecisionVariables()[6]).getValue();

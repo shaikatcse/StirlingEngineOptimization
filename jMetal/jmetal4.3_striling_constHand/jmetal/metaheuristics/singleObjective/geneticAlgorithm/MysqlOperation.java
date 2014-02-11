@@ -15,7 +15,7 @@ public class MysqlOperation {
 			Class.forName("com.mysql.jdbc.Driver");
 			// Setup the connection with the DB
 			connect = DriverManager
-					.getConnection("jdbc:mysql://localhost/strilingengineHeatExchangerProbwithConstrainshandling?"
+					.getConnection("jdbc:mysql://localhost/seritstirlingengine?"
 							+ "user=root&password=root123");
 		} catch (Exception e) {
 			System.out.println("Exception occoured in Database in connection");
@@ -28,7 +28,7 @@ public class MysqlOperation {
 			// DATE TIME convertion bettwen java and mysql
 
 			Statement st = connect.createStatement();
-			String Insertquery = "insert into strilingengineHeatExchangerProbwithConstrainshandling.algorithm (alName ) values ('"
+			String Insertquery = "insert into seritstirlingengine.algorithm (alName ) values ('"
 					+ alName + "')";
 			/*
 			 * preparedStatement = connect
@@ -51,7 +51,7 @@ public class MysqlOperation {
 			// DATE TIME convertion bettwen java and mysql
 
 			Statement st = connect.createStatement();
-			String Insertquery = "insert into strilingengineHeatExchangerProbwithConstrainshandling.run (runId, runTime, resultIndv,resultFitness, alname, runNumber ) values ("
+			String Insertquery = "insert into seritstirlingengine.run (runId, runTime, resultIndv,resultFitness, alname, runNumber ) values ("
 					+ "'"
 					+ runId
 					+ "'"
@@ -88,7 +88,7 @@ public class MysqlOperation {
 			// DATE TIME convertion bettwen java and mysql
 
 			Statement st = connect.createStatement();
-			String Insertquery = "insert into strilingengineHeatExchangerProbwithConstrainshandling.generation (genId, genNo, genTime,genIndv,genFitness, runId, genPower ) values ("
+			String Insertquery = "insert into seritstirlingengine.generation (genId, genNo, genTime,genIndv,genFitness, runId, genPower ) values ("
 					+ "'"
 					+ genId
 					+ "'"
@@ -124,7 +124,7 @@ public class MysqlOperation {
 			double resultFitness, long estimatedTime, double runPower) {
 		try {
 			Statement st = connect.createStatement();
-			String updateQuery = "update strilingengineHeatExchangerProbwithConstrainshandling.run set resultFitness="
+			String updateQuery = "update seritstirlingengine.run set resultFitness="
 					+ resultFitness + ", resultIndv='" + resultIndv
 					+ "', estimatedTime=" + estimatedTime + ",runPower="+runPower + " where runId='" + runId
 					+ "'";
